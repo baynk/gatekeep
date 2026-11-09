@@ -5,3 +5,5 @@ dist/
 build/
 .venv/
 __pycache__/
+
+.e2e/
