@@ -21,7 +21,10 @@ npm run dev        # http://127.0.0.1:5173
 ```bash
 npm run build      # static site in dist/, works from any path
 npm run check      # typecheck, unit tests, pack checker, end-to-end
+npm run deploy     # build and publish to GitHub Pages (the gh-pages branch)
 ```
+
+It is live at https://baynk.github.io/gatekeep/.
 
 `npm run e2e` builds the app, serves the build on a free port and plays it at
 phone size: whole rounds, leaving the app mid-question, passing the phone,
