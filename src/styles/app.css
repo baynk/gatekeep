@@ -4,8 +4,10 @@
  * The claim is the hero. Every screen is the sentence somebody said about
  * themselves, in quotation marks, and what the checker's pen did to it.
  *
- * - One family, Newsreader. Black on white. The grays belong to the ink and
- *   the ground.
+ * - One family, Schibsted Grotesk: a newsroom grotesk with a serifed capital
+ *   I, so a claim that starts with "I" still starts with a letter. It has no
+ *   optical sizes, so the tracking does that work: tighter as the type gets
+ *   bigger. Black on white. The grays belong to the ink and the ground.
  * - One color, a highlighter, and it only ever marks a ruling: the verdict,
  *   the word after an answer, the head-to-head headline. Never a button,
  *   never a right answer, never decoration.
@@ -26,14 +28,14 @@
   --r: 8px;
   --pad: clamp(24px, 7.7vw, 34px);
 
-  --f-hero: clamp(40px, 13.4vw, 60px);
-  --f-claim: clamp(22px, 6.5vw, 28px);
-  --f-ask: clamp(21px, 6.3vw, 27px);
-  --f-opt: clamp(16.5px, 4.7vw, 20px);
+  --f-hero: clamp(37px, 12.2vw, 56px);
+  --f-claim: clamp(20.3px, 6vw, 25.85px);
+  --f-ask: clamp(20.07px, 6.02vw, 25.8px);
+  --f-opt: clamp(15.45px, 4.4vw, 18.7px);
   --f-rule: clamp(30px, 9.5vw, 42px);
   --f-tile: clamp(23px, 7.2vw, 31px);
 
-  --font: 'Newsreader Variable', 'Iowan Old Style', 'Palatino Linotype', Georgia, serif;
+  --font: 'Schibsted Grotesk Variable', 'Schibsted Grotesk', 'Helvetica Neue', Helvetica, system-ui, sans-serif;
   --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
   --pen: cubic-bezier(0.3, 0.6, 0.2, 1);
 }
@@ -53,8 +55,8 @@ body {
   margin: 0;
   background: var(--paper);
   color: var(--ink);
-  font: 400 17px/1.4 var(--font);
-  font-optical-sizing: auto;
+  font: 400 16px/1.4875 var(--font);
+  letter-spacing: -0.01em;
   font-variant-numeric: lining-nums;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -84,6 +86,7 @@ ul {
 button,
 input {
   font: inherit;
+  letter-spacing: inherit;
   color: inherit;
 }
 
@@ -194,7 +197,7 @@ svg {
 /* A stroke is a background on the inline text, so it runs along a wrapped
    line and carries on to the next. */
 .ink {
-  padding-bottom: 0.1em;
+  padding-bottom: 0.12em;
   background: linear-gradient(var(--ink), var(--ink)) no-repeat 0 100% / 0 0;
 }
 
@@ -215,7 +218,7 @@ svg {
 .hl {
   padding: 0 0.12em;
   margin: 0 -0.12em;
-  background: linear-gradient(var(--mark), var(--mark)) no-repeat 0 84% / 100% 52%;
+  background: linear-gradient(var(--mark), var(--mark)) no-repeat 0 90% / 100% 42%;
   -webkit-box-decoration-break: clone;
   box-decoration-break: clone;
   animation: pen-h 0.22s var(--pen) 0.05s backwards;
@@ -223,7 +226,7 @@ svg {
 
 @keyframes pen-h {
   from {
-    background-size: 0 52%;
+    background-size: 0 42%;
   }
 }
 
@@ -267,7 +270,7 @@ svg {
 }
 
 .q__close--f {
-  margin-left: -0.045em;
+  margin-left: 0;
 }
 
 /* ── Things a thumb presses ──────────────────────────────────────────── */
@@ -294,8 +297,8 @@ svg {
   min-height: 56px;
   padding: 6px 16px;
   border-radius: var(--r);
-  font-size: 19px;
-  font-weight: 600;
+  font-size: 18px;
+  font-weight: 550;
   line-height: 1.15;
   text-align: center;
   overflow-wrap: anywhere;
@@ -315,8 +318,9 @@ svg {
   min-height: 50px;
   padding: 6px 10px;
   background: var(--field);
-  font-size: 17px;
-  font-weight: 550;
+  font-size: 16px;
+  line-height: 1.22;
+  font-weight: 500;
 }
 
 .btn--quiet:active:not(:disabled),
@@ -327,7 +331,7 @@ svg {
 .btn--text {
   min-height: 48px;
   color: var(--ink-2);
-  font-size: 17px;
+  font-size: 16px;
   font-weight: 400;
   transition: color 0.14s linear;
 }
@@ -373,7 +377,7 @@ svg {
 .bar__count {
   flex: none;
   color: var(--ink-2);
-  font-size: 15px;
+  font-size: 14px;
   font-variant-numeric: lining-nums tabular-nums;
 }
 
@@ -381,11 +385,19 @@ svg {
   font-weight: 800;
   font-size: clamp(32px, 9.5vw, 40px);
   line-height: 1;
-  letter-spacing: -0.03em;
+  letter-spacing: -0.045em;
+}
+
+/* The grotesk stands lower in its line than the serif did: the big lines are lifted to where they stood. */
+.home .wordmark {
+  position: relative;
+  top: -0.045em;
 }
 
 .wordmark--small {
-  font-size: 21px;
+  position: relative;
+  top: -2px;
+  font-size: 20px;
 }
 
 /* The small label above the big type: the skill, the round, the section. */
@@ -418,8 +430,8 @@ svg {
 
 .dock__note {
   color: var(--ink-2);
-  font-size: 15px;
-  line-height: 1.3;
+  font-size: 14px;
+  line-height: 1.39;
   text-align: center;
 }
 
@@ -433,8 +445,8 @@ svg {
 .tagline {
   margin-top: 8px;
   color: var(--ink-2);
-  font-size: 17px;
-  line-height: 1.3;
+  font-size: 16px;
+  line-height: 1.38;
 }
 
 .search {
@@ -460,7 +472,8 @@ svg {
   border: 0;
   border-radius: var(--r);
   background: var(--field);
-  font-size: 17px;
+  font-size: 16px;
+  letter-spacing: -0.018em;
   appearance: none;
   -webkit-appearance: none;
 }
@@ -469,7 +482,7 @@ svg {
   color: var(--ink-2);
   opacity: 1;
   /* The whole question has to fit a 320px phone. Only the hint shrinks: what
-     is typed stays 17px, so iOS does not zoom the page on focus. 57px is the
+     is typed stays 16px, so iOS does not zoom the page on focus. 57px is the
      field's own padding either side of the text; the sentence is 14.9em long
      in this face. */
   font-size: min(1em, calc((100vw - 2 * var(--pad) - 57px) / 15.2));
@@ -532,7 +545,7 @@ svg {
   padding: 0 9px;
   border-radius: var(--r);
   color: var(--ink-2);
-  font-size: 16px;
+  font-size: 15px;
   text-align: center;
   white-space: nowrap;
   text-decoration: underline transparent 2.5px;
@@ -565,7 +578,7 @@ svg {
   flex: none;
   margin: 12px 0 2px;
   color: var(--ink-2);
-  font-size: 15px;
+  font-size: 14px;
 }
 
 .packs {
@@ -602,7 +615,7 @@ svg {
 .pack__best {
   flex: none;
   color: var(--ink-2);
-  font-size: 15px;
+  font-size: 14px;
   line-height: 18px;
   font-style: italic;
   font-variant-numeric: lining-nums tabular-nums;
@@ -612,9 +625,9 @@ svg {
   display: block;
   margin-top: 2px;
   font-size: var(--f-claim);
-  line-height: 1.14;
-  font-weight: 500;
-  letter-spacing: -0.014em;
+  line-height: 1.235;
+  font-weight: 460;
+  letter-spacing: -0.03em;
 }
 
 .empty {
@@ -626,8 +639,8 @@ svg {
 
 .empty p {
   color: var(--ink-2);
-  font-size: 19px;
-  line-height: 1.3;
+  font-size: 18px;
+  line-height: 1.37;
   font-style: italic;
   text-wrap: balance;
 }
@@ -645,11 +658,13 @@ svg {
 }
 
 .claim {
+  position: relative;
+  top: -0.085em;
   margin-top: 10px;
   font-size: var(--f-hero);
   line-height: 1.04;
   font-weight: 500;
-  letter-spacing: -0.018em;
+  letter-spacing: -0.038em;
   text-wrap: balance;
   /* A challenger's name comes from a link and may have no place to break. */
   overflow-wrap: anywhere;
@@ -658,8 +673,8 @@ svg {
 .intro__note {
   margin-top: 16px;
   color: var(--ink-2);
-  font-size: 19px;
-  line-height: 1.3;
+  font-size: 18px;
+  line-height: 1.37;
   overflow-wrap: anywhere;
 }
 
@@ -670,7 +685,7 @@ svg {
 
 .intro__rounds {
   color: var(--ink-2);
-  font-size: 17px;
+  font-size: 16px;
 }
 
 .rounds {
@@ -679,30 +694,33 @@ svg {
 
 /* Each harder: each heavier. */
 .rounds__step {
+  position: relative;
+  top: -0.05em;
   font-size: clamp(27px, 8vw, 35px);
   line-height: 1.16;
-  letter-spacing: -0.016em;
+  letter-spacing: -0.02em;
+  word-spacing: 0.07em;
   animation: rise 0.3s var(--ease) backwards;
 }
 
 .rounds__step--1 {
-  font-weight: 300;
+  font-weight: 400;
   animation-delay: 0.14s;
 }
 
 .rounds__step--2 {
-  font-weight: 500;
+  font-weight: 620;
   animation-delay: 0.22s;
 }
 
 .rounds__step--3 {
-  font-weight: 800;
+  font-weight: 900;
   animation-delay: 0.3s;
 }
 
 .intro__fine {
   margin-top: 12px;
-  font-size: 17px;
+  font-size: 16px;
 }
 
 .field {
@@ -713,7 +731,7 @@ svg {
 
 .field__label {
   color: var(--ink-2);
-  font-size: 15px;
+  font-size: 14px;
 }
 
 .field__input {
@@ -723,8 +741,8 @@ svg {
   border: 0;
   border-radius: var(--r);
   background: var(--field);
-  font-size: 19px;
-  font-weight: 600;
+  font-size: 18px;
+  font-weight: 580;
   appearance: none;
   -webkit-appearance: none;
 }
@@ -759,9 +777,9 @@ svg {
   flex: none;
   margin-top: 8px;
   font-size: var(--f-ask);
-  line-height: 1.17;
-  font-weight: 600;
-  letter-spacing: -0.014em;
+  line-height: 1.2244;
+  font-weight: 560;
+  letter-spacing: -0.02em;
   text-wrap: pretty;
 }
 
@@ -784,8 +802,8 @@ svg {
   background: var(--field);
   color: var(--ink);
   font-size: var(--f-opt);
-  line-height: 1.26;
-  font-weight: 500;
+  line-height: 1.346;
+  font-weight: 450;
   text-align: left;
 }
 
@@ -814,7 +832,7 @@ svg {
 .answer__mark .ring {
   width: 28px;
   height: 28px;
-  margin: -15.5px 0 0 -14px;
+  margin: -14.1px 0 0 -14px;
 }
 
 .answer__text {
@@ -863,7 +881,7 @@ svg {
 /* Right is underlined. */
 .answer--right .ink {
   background-size: 100% 2.5px;
-  background-position: 0 96%;
+  background-position: 0 100%;
   animation: pen-u 0.2s var(--pen) backwards;
 }
 
@@ -876,7 +894,7 @@ svg {
 .answer--wrong .ink,
 .answer--trap .ink {
   background-size: 100% 2px;
-  background-position: 0 55%;
+  background-position: 0 63%;
   animation: pen-s 0.18s var(--pen) backwards;
 }
 
@@ -900,15 +918,15 @@ svg {
 
 .why__head {
   font-size: var(--f-ask);
-  line-height: 1.2;
-  font-weight: 700;
-  letter-spacing: -0.012em;
+  line-height: 1.256;
+  font-weight: 650;
+  letter-spacing: -0.025em;
 }
 
 .why__text {
   margin-top: 6px;
-  font-size: clamp(15px, 4.2vw, 17px);
-  line-height: 1.38;
+  font-size: clamp(14px, 3.92vw, 15.87px);
+  line-height: 1.4786;
   animation: rise 0.2s var(--ease) 0.06s backwards;
 }
 
@@ -983,14 +1001,14 @@ svg {
   font-size: clamp(27px, 8vw, 35px);
   line-height: 1.08;
   font-weight: 700;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.04em;
 }
 
 .sheet__text {
   margin-bottom: 14px;
   color: var(--ink-2);
-  font-size: 17px;
-  line-height: 1.3;
+  font-size: 16px;
+  line-height: 1.38;
 }
 
 /* ── The eight: question numbers, marked by the pen ──────────────────── */
@@ -1010,9 +1028,11 @@ svg {
   display: grid;
   place-items: center;
   height: calc(var(--f-tile) * 1.62);
+  /* The numerals stand low in this face: lifted to where the pen expects them. */
+  padding-bottom: 0.23em;
   font-size: var(--f-tile);
   line-height: 1;
-  font-weight: 650;
+  font-weight: 600;
 }
 
 .tile::after {
@@ -1103,18 +1123,20 @@ svg {
 
 .card__by {
   margin-top: 12px;
-  font-size: 21px;
-  line-height: 1.2;
+  font-size: 20px;
+  line-height: 1.26;
   font-style: italic;
   overflow-wrap: anywhere;
 }
 
 .verdict {
+  position: relative;
+  top: -0.07em;
   margin-top: clamp(20px, 7vw, 32px);
   font-size: var(--f-rule);
   line-height: 1.1;
   font-weight: 700;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.04em;
   text-wrap: balance;
 }
 
@@ -1128,8 +1150,8 @@ svg {
 .verdict__line {
   margin-top: 6px;
   color: var(--ink-2);
-  font-size: 17px;
-  line-height: 1.3;
+  font-size: 16px;
+  line-height: 1.38;
 }
 
 .evidence {
@@ -1138,6 +1160,9 @@ svg {
 }
 
 .score {
+  position: relative;
+  top: calc(var(--f-hero) * -0.105);
+  margin-bottom: calc(var(--f-hero) * -0.05);
   display: flex;
   align-items: baseline;
   gap: 5px;
@@ -1153,7 +1178,7 @@ svg {
 
 .score__of {
   color: var(--ink-2);
-  font-size: 19px;
+  font-size: 18px;
 }
 
 .tiles--card {
@@ -1164,8 +1189,8 @@ svg {
 .card__time {
   margin-top: 14px;
   color: var(--ink-2);
-  font-size: 15px;
-  line-height: 1.3;
+  font-size: 14px;
+  line-height: 1.39;
   font-style: italic;
 }
 
@@ -1200,7 +1225,7 @@ svg {
   gap: 2px clamp(8px, 3.4vw, 20px);
   margin-top: 22px;
   color: var(--ink-2);
-  font-size: clamp(13.5px, 3.9vw, 15px);
+  font-size: clamp(13px, 3.7vw, 14px);
   white-space: nowrap;
 }
 
@@ -1237,8 +1262,8 @@ svg {
 }
 
 .detail__line {
-  font-size: 17px;
-  line-height: 1.35;
+  font-size: 16px;
+  line-height: 1.435;
 }
 
 .tally {
@@ -1250,13 +1275,13 @@ svg {
 
 .tally dt {
   color: var(--ink-2);
-  font-size: 15px;
+  font-size: 14px;
 }
 
 .tally dd {
-  font-size: 26px;
-  line-height: 1.15;
-  font-weight: 650;
+  font-size: 24.5px;
+  line-height: 1.22;
+  font-weight: 600;
   font-variant-numeric: lining-nums tabular-nums;
 }
 
@@ -1270,20 +1295,20 @@ svg {
   justify-content: space-between;
   gap: 9px;
   padding: 4px 0;
-  font-size: 17px;
+  font-size: 16px;
 }
 
 .breakdown__note {
   /* With the space between the two in the text, 9px in all. */
   margin-left: 4px;
   color: var(--ink-2);
-  font-size: 15px;
+  font-size: 14px;
   font-style: italic;
 }
 
 .breakdown dd {
   flex: none;
-  font-weight: 650;
+  font-weight: 580;
   font-variant-numeric: lining-nums tabular-nums;
 }
 
@@ -1291,7 +1316,7 @@ svg {
 .detail__fine {
   margin-top: 10px;
   color: var(--ink-2);
-  font-size: 15px;
+  font-size: 14px;
 }
 
 .detail__fine {
@@ -1300,8 +1325,8 @@ svg {
 
 .noticed li {
   padding: 3px 0;
-  font-size: 17px;
-  line-height: 1.3;
+  font-size: 16px;
+  line-height: 1.38;
 }
 
 .review {
@@ -1317,9 +1342,9 @@ svg {
   padding: 6px 14px;
   border-radius: var(--r);
   background: var(--field);
-  font-size: 17px;
-  line-height: 1.2;
-  font-weight: 550;
+  font-size: 16px;
+  line-height: 1.22;
+  font-weight: 500;
   cursor: pointer;
   list-style: none;
 }
@@ -1347,21 +1372,21 @@ svg {
 
 .review__ask {
   margin-bottom: 8px;
-  font-size: 19px;
-  line-height: 1.22;
-  font-weight: 600;
-  letter-spacing: -0.01em;
+  font-size: 18px;
+  line-height: 1.28;
+  font-weight: 560;
+  letter-spacing: -0.02em;
 }
 
 .review__pick {
   margin-bottom: 4px;
-  font-size: 17px;
-  line-height: 1.34;
+  font-size: 16px;
+  line-height: 1.42;
 }
 
 .review__pick--hit .ink {
   background-size: 100% 2px;
-  background-position: 0 96%;
+  background-position: 0 100%;
 }
 
 .review__pick--trap,
@@ -1372,14 +1397,14 @@ svg {
 .review__pick--trap .ink,
 .review__pick--miss .ink {
   background-size: 100% 1.5px;
-  background-position: 0 55%;
+  background-position: 0 63%;
 }
 
 .review__tag {
   display: inline-block;
   margin-left: 4px;
   color: var(--ink);
-  font-size: 15px;
+  font-size: 14px;
   font-style: italic;
   white-space: nowrap;
 }
@@ -1387,8 +1412,8 @@ svg {
 .review__why {
   margin-top: 8px;
   color: var(--ink-2);
-  font-size: 15px;
-  line-height: 1.4;
+  font-size: 14px;
+  line-height: 1.48;
 }
 
 /* ── Head to head ────────────────────────────────────────────────────── */
@@ -1399,10 +1424,13 @@ svg {
 
 .versus__headline {
   margin-top: 8px;
+  position: relative;
+  top: -0.08em;
   font-size: clamp(35px, 11.2vw, 48px);
   line-height: 1.08;
   font-weight: 700;
-  letter-spacing: -0.024em;
+  letter-spacing: -0.044em;
+  word-spacing: 0.06em;
   text-wrap: balance;
   /* The last resort for a name with no place to break: never off the screen. */
   overflow-wrap: anywhere;
@@ -1421,8 +1449,8 @@ svg {
 .versus__note,
 .versus__split {
   color: var(--ink-2);
-  font-size: 17px;
-  line-height: 1.35;
+  font-size: 16px;
+  line-height: 1.435;
 }
 
 .sides {
@@ -1437,6 +1465,9 @@ svg {
 }
 
 .side__top {
+  position: relative;
+  top: -4.5px;
+  margin-bottom: -1.6px;
   display: flex;
   align-items: baseline;
   gap: 10px;
@@ -1455,14 +1486,14 @@ svg {
   min-width: 0;
   font-size: clamp(25px, 7.2vw, 30px);
   line-height: 1;
-  font-weight: 650;
-  letter-spacing: -0.016em;
+  font-weight: 600;
+  letter-spacing: -0.03em;
   overflow-wrap: anywhere;
 }
 
 .side__verdict {
   color: var(--ink-2);
-  font-size: 17px;
+  font-size: 16px;
   line-height: 1.2;
 }
 
@@ -1471,7 +1502,7 @@ svg {
   font-size: clamp(38px, 11.2vw, 46px);
   line-height: 0.9;
   font-weight: 650;
-  letter-spacing: -0.03em;
+  letter-spacing: -0.04em;
   font-variant-numeric: lining-nums tabular-nums;
 }
 
@@ -1482,8 +1513,8 @@ svg {
 .side__flag {
   margin-top: 10px;
   color: var(--ink-2);
-  font-size: 15px;
-  line-height: 1.3;
+  font-size: 14px;
+  line-height: 1.39;
   font-style: italic;
 }
 
@@ -1524,8 +1555,8 @@ svg {
   border-radius: var(--r);
   background: var(--ink);
   color: var(--paper);
-  font-size: 16px;
-  line-height: 1.25;
+  font-size: 15px;
+  line-height: 1.3;
   font-weight: 500;
   overflow-wrap: anywhere;
   animation: toast 0.24s var(--ease) both;
@@ -1543,6 +1574,22 @@ svg {
 @media (max-height: 700px) {
   .home__head {
     padding-top: 6px;
+  }
+  /* A long claim must leave room for the one button under it. */
+  .claim {
+    font-size: clamp(31px, 10vw, 44px);
+  }
+  .claim--said {
+    font-size: clamp(28px, 9vw, 38px);
+  }
+  .rounds__step {
+    font-size: clamp(23px, 6.8vw, 30px);
+  }
+  .card__by {
+    margin-top: 8px;
+  }
+  .evidence {
+    padding-top: 12px;
   }
   .search {
     margin-top: 16px;

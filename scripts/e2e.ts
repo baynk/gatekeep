@@ -1096,9 +1096,11 @@ try {
   }
 
   // On a short phone the answers fill the screen, so most scrolls start with
-  // a finger on one. A scroll must not look like a press: the pressed answer
-  // is ink-black, the look of a pick that cannot be taken back.
-  const t = await phone(browser, 'touch', { width: 375, height: 548 });
+  // a finger on one. A scroll must not look like a press: a pressed answer
+  // looks like a pick that cannot be taken back. The screen here is short
+  // enough that every question, even the briefest, runs past it: a question
+  // that fits leaves the page nothing to scroll.
+  const t = await phone(browser, 'touch', { width: 375, height: 440 });
   await t.page.goto(`${BASE}#/p/plumbing`);
   await t.page.locator('.intro').waitFor();
   await t.page.waitForTimeout(300);
